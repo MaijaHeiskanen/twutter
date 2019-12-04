@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Feed from "./components/feed";
+
+function createTestData(name, text) {
+  return { name: name, textContent: text, date: new Date() };
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  // Test data before backend things exist.
+  const items = [
+    createTestData("Keijo", "aaaaaa"),
+    createTestData("Niilo22", "ON!"),
+    createTestData("Kerpele", ":D")
+  ];
+
+  return <Feed items={items} />;
 }
 
 export default App;
