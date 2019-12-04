@@ -1,10 +1,20 @@
 .feed-item {
-  background-color: rgb(104, 1, 189);
+  background-color: rgb(67, 35, 94);
   color: white;
   margin: 0;
 }
 
 .feed {
-  background-color: violet;
+  background-color: rgb(255, 255, 255);
   margin: 0;
+}
+
+.text-content {
+  font-size: x-large;
+  color: white;
+}
+
+.name,
+.date {
+  color: rgb(180, 153, 224);
 }
