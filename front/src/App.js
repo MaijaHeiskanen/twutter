@@ -29,10 +29,11 @@ function App() {
         <Header />
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column width={3}>
+        {/* TODO: Miten nää leveyksien säädöt toimii a pu a */}
+        <Grid.Column width={4}>
           <SideMenu />
         </Grid.Column>
-        <Grid.Column width={13}>
+        <Grid.Column width={12}>
           <CreatePost />
           <Feed items={items} />
         </Grid.Column>
