@@ -27,7 +27,7 @@ class FeedItem extends Component {
   render() {
     const { name, textContent, date } = this.props;
     return (
-      <Card>
+      <Card style={{ width: "100%", minWidth: "100%", maxWidth: "100%" }}>
         <Card.Content>
           <Card.Meta content={name} />
           <Card.Description content={textContent} />

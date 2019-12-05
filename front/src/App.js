@@ -1,8 +1,10 @@
 import React from "react";
-import { Container, Grid } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import "./App.css";
 import Feed from "./components/feed";
+import SideMenu from "./components/sidemenu";
 import CreatePost from "./components/CreatePost";
+import Header from "./components/header";
 
 function createTestData(name, text) {
   return {
@@ -23,9 +25,14 @@ function App() {
 
   return (
     <Grid container stackable>
+      <Grid.Row centered>
+        <Header />
+      </Grid.Row>
       <Grid.Row>
-        <Grid.Column width={2}>Sivupalkki</Grid.Column>
-        <Grid.Column width={14}>
+        <Grid.Column width={3}>
+          <SideMenu />
+        </Grid.Column>
+        <Grid.Column width={13}>
           <CreatePost />
           <Feed items={items} />
         </Grid.Column>
