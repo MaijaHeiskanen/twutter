@@ -17,7 +17,8 @@ export default class SideMenu extends Component {
 export default class SideMenu extends Component {
   render() {
     return (
-      <Sidebar.Pushable as={Segment}>
+      // Toi "as={Segment}" aiheuttaa sen haamulaatikon.
+      <Sidebar.Pushable /*as={Segment}*/>
         <Sidebar
           as={Menu}
           animation="overlay"

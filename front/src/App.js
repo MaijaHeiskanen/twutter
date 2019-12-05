@@ -20,13 +20,20 @@ function App() {
   const items = [
     createTestData("Keijo", "aaaaaa"),
     createTestData("Niilo22", "ON!"),
-    createTestData("Kerpele", ":D")
+    createTestData("Kerpele", ":D"),
+    createTestData("Kerpele", "A pu a"),
+    createTestData("Kerpele", "Orava kiipes puuhun lapio Xd"),
+    createTestData("Niilo22", "0/5"),
+    createTestData("Keijo", "Nyt loppuu tommonen roskapostaaminen.."),
+    createTestData("Kerpele", "ok.")
   ];
 
   return (
     <Grid container stackable>
       <Grid.Row centered>
-        <Header />
+        <Grid.Column>
+          <Header />
+        </Grid.Column>
       </Grid.Row>
       <Grid.Row>
         {/* TODO: Miten nää leveyksien säädöt toimii a pu a */}
