@@ -1,11 +1,16 @@
 import React from "react";
-import logo from "./logo.svg";
+import { Container, Grid } from "semantic-ui-react";
 import "./App.css";
 import Feed from "./components/feed";
 import CreatePost from "./components/CreatePost";
 
 function createTestData(name, text) {
-  return { name: name, textContent: text, date: new Date() };
+  return {
+    id: Math.random(),
+    name: name,
+    textContent: text,
+    date: new Date()
+  };
 }
 
 function App() {
@@ -17,10 +22,15 @@ function App() {
   ];
 
   return (
-    <div>
-      <CreatePost />
-      <Feed items={items} />
-    </div>
+    <Grid container stackable>
+      <Grid.Row>
+        <Grid.Column width={2}>Sivupalkki</Grid.Column>
+        <Grid.Column width={14}>
+          <CreatePost />
+          <Feed items={items} />
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
   );
 }
 
