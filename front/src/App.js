@@ -5,6 +5,7 @@ import Feed from "./components/feed";
 import SideMenu from "./components/sidemenu";
 import CreatePost from "./components/CreatePost";
 import Header from "./components/header";
+import LogIn from "./components/login";
 
 function createTestData(name, text) {
   return {
@@ -36,13 +37,13 @@ function App() {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        {/* TODO: Miten nää leveyksien säädöt toimii a pu a */}
         <Grid.Column width={4}>
           <SideMenu />
         </Grid.Column>
         <Grid.Column width={12}>
           <CreatePost />
           <Feed items={items} />
+          <LogIn />
         </Grid.Column>
       </Grid.Row>
     </Grid>
