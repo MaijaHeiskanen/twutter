@@ -7,4 +7,4 @@ const Post = mongoose.model("Post", {
   date: Date
 });
 
-modules.exports = { Post };
+module.exports = { Post };
