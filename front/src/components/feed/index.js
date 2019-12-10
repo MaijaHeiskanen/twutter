@@ -7,7 +7,7 @@ export default class Feed extends Component {
     const { items } = this.props;
     const components = items.map(item => (
       <FeedItem
-        key={item.id}
+        key={item._id}
         name={item.name}
         textContent={item.textContent}
         date={item.date}

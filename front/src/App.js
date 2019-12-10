@@ -7,6 +7,7 @@ import CreatePost from "./components/CreatePost";
 import Header from "./components/header";
 import LogIn from "./components/login";
 
+// Useless if backend is done.
 function createTestData(name, text) {
   return {
     id: Math.random(),
