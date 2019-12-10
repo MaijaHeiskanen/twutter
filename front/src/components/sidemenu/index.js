@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
+import { Icon, Menu } from "semantic-ui-react";
 
 export default class SideMenu extends Component {
   render() {
