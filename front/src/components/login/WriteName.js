@@ -10,6 +10,7 @@ export default class WriteName extends Component {
           <TextArea
             style={{ width: "100%", minWidth: "100%", maxWidth: "100%" }}
             placeholder="nick"
+            rows="1"
           />
         </Form>
         <Grid>

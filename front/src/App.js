@@ -43,6 +43,9 @@ function App() {
         <Grid.Column width={12}>
           <CreatePost />
           <Feed items={items} />
+          {
+            //TODO: remove login from here. Is only for test purposes.
+          }
           <LogIn />
         </Grid.Column>
       </Grid.Row>
