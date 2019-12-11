@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid } from "semantic-ui-react";
+import { Grid, Divider } from "semantic-ui-react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 import Feed from "./components/feed";
@@ -81,6 +81,7 @@ class App extends Component {
                     onNewPost={newPost => this.createPost(newPost)}
                     currentUser={currentUser}
                   />
+                  <Divider />
                   <Feed
                     items={items.filter(item => item.name === currentUser)}
                   />
@@ -90,6 +91,8 @@ class App extends Component {
                     onNewPost={newPost => this.createPost(newPost)}
                     currentUser={currentUser}
                   />
+
+                  <Divider />
                   <Feed items={items} />
                 </Route>
                 <Route>
