@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Grid } from "semantic-ui-react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 import Feed from "./components/feed";
 import SideMenu from "./components/sidemenu";
@@ -19,6 +20,8 @@ function createTestData(name, text) {
 
 class App extends Component {
   state = { items: [], currentUser: "anonymous" };
+
+  login() {}
 
   async fetchPosts() {
     const res = await window.fetch("//localhost:5000/posts");
@@ -50,32 +53,53 @@ class App extends Component {
   }
 
   render() {
-    const { items } = this.state;
+    const { items, currentUser } = this.state;
 
     return (
-      <Grid container stackable>
-        <Grid.Row centered>
-          <Grid.Column>
-            <Header />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column width={4}>
-            <SideMenu />
-          </Grid.Column>
-          <Grid.Column width={12}>
-            <CreatePost
-              onNewPost={newPost => this.createPost(newPost)}
-              currentUser={this.state.currentUser}
-            />
-            <Feed items={items} />
-            {
-              //TODO: remove login from here. Is only for test purposes.
-            }
-            <LogIn />
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+      <Router>
+        <Grid container stackable>
+          <Grid.Row centered>
+            <Grid.Column>
+              <Header />
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column width={4}>
+              <SideMenu />
+            </Grid.Column>
+            <Grid.Column width={12}>
+              <Switch>
+                <Route path="/login">
+                  <LogIn
+                    onUserChanged={username =>
+                      this.setState({ currentUser: username })
+                    }
+                  />
+                </Route>
+                <Route path="/my-blog">
+                  <CreatePost
+                    onNewPost={newPost => this.createPost(newPost)}
+                    currentUser={currentUser}
+                  />
+                  <Feed
+                    items={items.filter(item => item.name === currentUser)}
+                  />
+                </Route>
+                <Route path="/" exact>
+                  <CreatePost
+                    onNewPost={newPost => this.createPost(newPost)}
+                    currentUser={currentUser}
+                  />
+                  <Feed items={items} />
+                </Route>
+                <Route>
+                  <p>Error: A pu a</p>
+                </Route>
+              </Switch>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Router>
     );
   }
 }

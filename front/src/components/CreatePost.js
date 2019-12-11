@@ -14,6 +14,7 @@ class CreatePost extends Component {
       textContent: this.state.textContent,
       date: new Date()
     });
+    this.setState({ textContent: "" });
   }
   render() {
     return (
@@ -27,6 +28,7 @@ class CreatePost extends Component {
               this.setState({ textContent: data.value });
               //console.log("state vaihdettu");
             }}
+            value={this.state.textContent}
           />
         </Form>
         <Grid>
