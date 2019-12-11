@@ -2,9 +2,19 @@ import React, { Component } from "react";
 import { TextArea, Button, Grid, Form } from "semantic-ui-react";
 
 class CreatePost extends Component {
-  // TODO: Do something for the given input?
-  // Maybe save to database and update on the site?
-  saveNewPost() {}
+  state = {
+    textContent: ""
+  };
+
+  saveNewPost() {
+    const { onNewPost, currentUser } = this.props;
+    onNewPost({
+      // TODO: Add user controlling kikkare, tyyliin propseihin tms.
+      name: currentUser,
+      textContent: this.state.textContent,
+      date: new Date()
+    });
+  }
   render() {
     return (
       <div>
@@ -13,12 +23,20 @@ class CreatePost extends Component {
             style={{ width: "100%", minWidth: "100%", maxWidth: "100%" }}
             rows={3}
             placeholder="Write a post..."
+            onChange={(event, data) => {
+              this.setState({ textContent: data.value });
+              //console.log("state vaihdettu");
+            }}
           />
         </Form>
         <Grid>
           <Grid.Row textAlign="right">
             <Grid.Column>
-              <Button primary style={{ clear: "both" }}>
+              <Button
+                primary
+                style={{ clear: "both" }}
+                onClick={() => this.saveNewPost()}
+              >
                 Post
               </Button>
             </Grid.Column>

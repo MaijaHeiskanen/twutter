@@ -17,20 +17,39 @@ function createTestData(name, text) {
   };
 }
 
-async function fetchPosts() {
-  const res = await window.fetch("//localhost:5000/posts");
-  return res.json();
-}
-
 class App extends Component {
-  state = { items: [] };
+  state = { items: [], currentUser: "anonymous" };
+
+  async fetchPosts() {
+    const res = await window.fetch("//localhost:5000/posts");
+    const data = await res.json();
+    const posts = data.map(post => {
+      return {
+        ...post,
+        date: new Date(post.date)
+      };
+    });
+    this.setState({ items: posts });
+  }
+
+  async createPost(newPost) {
+    await window.fetch("//localhost:5000/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      mode: "cors",
+      body: JSON.stringify(newPost)
+    });
+
+    this.fetchPosts();
+  }
 
   componentDidMount() {
-    fetchPosts().then(posts => this.setState({ items: posts }));
+    this.fetchPosts();
   }
 
   render() {
-    // Test data before backend things exist.
     const { items } = this.state;
 
     return (
@@ -45,7 +64,10 @@ class App extends Component {
             <SideMenu />
           </Grid.Column>
           <Grid.Column width={12}>
-            <CreatePost />
+            <CreatePost
+              onNewPost={newPost => this.createPost(newPost)}
+              currentUser={this.state.currentUser}
+            />
             <Feed items={items} />
             {
               //TODO: remove login from here. Is only for test purposes.

@@ -3,7 +3,9 @@ var { Post } = require("../db");
 var router = express.Router();
 
 router.get("/", async function(req, res, next) {
-  const posts = await Post.find().exec();
+  const posts = await Post.find()
+    .sort({ date: -1 })
+    .exec();
 
   res.json(posts);
 });
