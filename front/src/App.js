@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Divider } from "semantic-ui-react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Feed from "./components/feed";
 import SideMenu from "./components/sidemenu";
@@ -8,6 +8,7 @@ import CreatePost from "./components/CreatePost";
 import Header from "./components/header";
 import LogIn from "./components/login";
 
+/*
 // Useless if backend is done.
 function createTestData(name, text) {
   return {
@@ -17,6 +18,7 @@ function createTestData(name, text) {
     date: new Date()
   };
 }
+*/
 
 class App extends Component {
   state = { items: [], currentUser: "anonymous" };
