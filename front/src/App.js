@@ -20,13 +20,17 @@ function createTestData(name, text) {
 }
 */
 
+// For kubernetes deployment
+// const API_BASE = "/api";
+const API_BASE = "//localhost:5000";
+
 class App extends Component {
   state = { items: [], currentUser: "anonymous" };
 
   login() {}
 
   async fetchPosts() {
-    const res = await window.fetch("//localhost:5000/posts");
+    const res = await window.fetch(`${API_BASE}/posts`);
     const data = await res.json();
     const posts = data.map(post => {
       return {
@@ -38,7 +42,7 @@ class App extends Component {
   }
 
   async createPost(newPost) {
-    await window.fetch("//localhost:5000/posts", {
+    await window.fetch(`${API_BASE}/posts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

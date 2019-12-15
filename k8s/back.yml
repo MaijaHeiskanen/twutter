@@ -1,0 +1,56 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: twutter-back
+  annotations:
+    traefik.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /api
+            backend:
+              serviceName: twutter-back
+              servicePort: http
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: twutter-back
+spec:
+  selector:
+    app: twutter-back
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 5000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: twutter-back
+  labels:
+    app: twutter-back
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: twutter-back
+  template:
+    metadata:
+      labels:
+        app: twutter-back
+    spec:
+      containers:
+        - name: back
+          image: maijaheiskanen/twutter-back:latest
+          env:
+            - name: PORT
+              value: "5000"
+            - name: MONGO_URL
+              value: "mongodb://mongo.default.svc/twutter"
+          ports:
+            - containerPort: 5000

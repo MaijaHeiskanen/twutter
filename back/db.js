@@ -2,7 +2,7 @@ const MONGO_URL = process.env.MONGO_URL;
 
 const mongoose = require("mongoose");
 setTimeout(() => {
-  mongoose.connect("mongodb://mongodb/test", {
+  mongoose.connect(MONGO_URL || "mongodb://mongodb/test", {
     useNewUrlParser: true
   });
 }, 3000);

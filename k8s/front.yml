@@ -1,0 +1,51 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: twutter-front
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: twutter-front
+              servicePort: http
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: twutter-front
+spec:
+  selector:
+    app: twutter-front
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 5000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: twutter-front
+  labels:
+    app: twutter-front
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: twutter-front
+  template:
+    metadata:
+      labels:
+        app: twutter-front
+    spec:
+      containers:
+        - name: front
+          image: maijaheiskanen/twutter-front:latest
+          ports:
+            - containerPort: 5000
