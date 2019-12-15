@@ -1,5 +1,11 @@
+const MONGO_URL = process.env.MONGO_URL;
+
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/test", { useNewUrlParser: true });
+setTimeout(() => {
+  mongoose.connect("mongodb://mongodb/test", {
+    useNewUrlParser: true
+  });
+}, 3000);
 
 const Post = mongoose.model("Post", {
   name: String,
