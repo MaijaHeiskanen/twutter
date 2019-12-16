@@ -29,6 +29,7 @@ class App extends Component {
 
   login() {}
 
+  // Fetch all the post from the database.
   async fetchPosts() {
     const res = await window.fetch(`${API_BASE}/posts`);
     const data = await res.json();
@@ -41,6 +42,7 @@ class App extends Component {
     this.setState({ items: posts });
   }
 
+  // Save a new post to the database.
   async createPost(newPost) {
     await window.fetch(`${API_BASE}/posts`, {
       method: "POST",
@@ -97,7 +99,6 @@ class App extends Component {
                     onNewPost={newPost => this.createPost(newPost)}
                     currentUser={currentUser}
                   />
-
                   <Divider />
                   <Feed items={items} />
                 </Route>
